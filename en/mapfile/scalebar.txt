@@ -160,11 +160,14 @@ MEASURE [cartesian|geodesic]
         projection. For other maps without a map projection, drawing the
         scalebar fails with an error.
 
-        Geodesic scalebars are local measurements. MapServer measures the
-        horizontal pixel span at the vertical centerline of the current map
-        extent, and converts that ground distance to the configured scalebar
-        ``UNITS``. The map scale denominator calculation is not changed by this
-        setting.
+        Geodesic scalebars are local measurements. MapServer measures a
+        horizontal pixel span at a representative map location derived from the
+        scalebar ``POSITION`` and ``OFFSET``. Lower positions sample near the
+        lower map edge, upper positions sample near the upper map edge, and
+        unsupported positions fall back to the map centerline. The horizontal
+        sample remains centered in the map. MapServer then converts that ground
+        distance to the configured scalebar ``UNITS``. The map scale
+        denominator calculation is not changed by this setting.
 
 .. index::
    pair: SCALEBAR; OFFSET

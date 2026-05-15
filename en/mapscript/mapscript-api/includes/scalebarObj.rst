@@ -9,4 +9,5 @@ The scalebarObj has the following relationships:
 The ``measure`` attribute controls how scalebar distances are calculated. It
 uses ``MS_SCALEBAR_MEASURE_CARTESIAN`` by default, or
 ``MS_SCALEBAR_MEASURE_GEODESIC`` for local ellipsoidal ground-distance
-measurement.
+measurement. In geodesic mode, ``position`` and ``offsety`` select the
+representative vertical sample location used for the local measurement.
