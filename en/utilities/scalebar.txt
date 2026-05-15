@@ -9,9 +9,10 @@
 
  .. note::
 
-    MapServer supports only cartesian distances (straight-line distance measured
-    on a flat surface), it does not convert distances into an ellipsoidal 
-    distance (measured on a spherical shape).
+    The default scalebar measurement is cartesian: a straight-line distance
+    measured on the map coordinate plane. Use ``MEASURE GEODESIC`` in the
+    :ref:`SCALEBAR` object to request a local ellipsoidal ground-distance
+    scalebar.
 
 Purpose
 -------

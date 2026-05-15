@@ -9,9 +9,9 @@
 
  .. note::
 
-    MapServer supports only cartesian distances (straight-line distance measured
-    on a flat surface), it does not convert distances into an ellipsoidal 
-    distance (measured on a spherical shape).
+    The default scalebar measurement is cartesian: a straight-line distance
+    measured on the map coordinate plane. Use ``MEASURE GEODESIC`` to request a
+    local ellipsoidal ground-distance scalebar.
 
 Scalebars currently do not make use of TrueType fonts. The size of the 
 scalebar image is NOT known prior to rendering, so be careful not to 
@@ -139,6 +139,32 @@ INTERVALS [integer]
 
 :ref:`LABEL`
     Signals the start of a :ref:`LABEL` object.
+
+.. index::
+   pair: SCALEBAR; MEASURE
+   :name: mapfile-scalebar-measure
+
+MEASURE [cartesian|geodesic]
+    Selects the distance measurement method used to calculate the scalebar.
+    Default is ``cartesian``.
+
+    ``cartesian``
+        Uses the map coordinate plane and the map cell size. This is the
+        historical MapServer behavior and remains the default.
+
+    ``geodesic``
+        Uses an ellipsoidal ground distance. For projected maps, MapServer
+        projects the sampled scalebar endpoints to geographic coordinates and
+        calculates the geodesic distance between them. For maps whose
+        :ref:`MAP` ``UNITS`` are ``dd``, ``geodesic`` can be used without a map
+        projection. For other maps without a map projection, drawing the
+        scalebar fails with an error.
+
+        Geodesic scalebars are local measurements. MapServer measures the
+        horizontal pixel span at the vertical centerline of the current map
+        extent, and converts that ground distance to the configured scalebar
+        ``UNITS``. The map scale denominator calculation is not changed by this
+        setting.
 
 .. index::
    pair: SCALEBAR; OFFSET
